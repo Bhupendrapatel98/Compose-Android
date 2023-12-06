@@ -23,7 +23,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.OtpActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.FirstComposeApplication" />
+        <activity
+            android:name=".ui.SignInActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.FirstComposeApplication" />
+        <activity
+            android:name=".ui.SignUpActivity"
             android:exported="false"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.FirstComposeApplication" />

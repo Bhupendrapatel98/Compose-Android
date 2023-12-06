@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
 
             LaunchedEffect(Unit){
                 delay(3000)
-                startActivity(Intent(this@MainActivity,LoginActivity::class.java))
+                startActivity(Intent(this@MainActivity,SignUpActivity::class.java))
             }
         }
     }
