@@ -9,6 +9,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -23,6 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -99,6 +101,70 @@ class DashboardActivity : ComponentActivity() {
 
                 PlantRecyclerView()
 
+                Text(
+                    text = "Learn about plants",
+                    color = Color.White,
+                    fontSize = 16.sp,
+                    fontFamily = FontFamily.SansSerif,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.padding(top = 20.dp)
+                )
+
+                LearnPlantRecyView()
+
+            }
+        }
+    }
+
+    @Composable
+    fun LearnPlantRecyView(){
+        val items = mutableListOf<Drawable>()
+        items.add(resources.getDrawable(R.drawable.item_img))
+        items.add(resources.getDrawable(R.drawable.item_image2))
+        items.add(resources.getDrawable(R.drawable.item_img3))
+
+        LazyRow(modifier = Modifier.padding(top = 20.dp)){
+            items(items){
+                LearnListItem(it)
+            }
+        }
+    }
+
+    @OptIn(ExperimentalGlideComposeApi::class)
+    @Composable
+    fun LearnListItem(item : Drawable){
+        Card(shape = RoundedCornerShape(8.dp), backgroundColor = Color.Gray,
+        modifier = Modifier
+            .width(170.dp)
+            .height(100.dp)
+            .padding(end = 10.dp)) {
+            Row(modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(),
+                verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                GlideImage(model = item,
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .width(40.dp)
+                        .fillMaxHeight())
+
+                Box(modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Coleus",
+                        color = Color.White,
+                        fontSize = 20.sp,
+                        fontFamily = FontFamily.SansSerif,
+                        fontWeight = FontWeight.SemiBold,
+                        textAlign = TextAlign.Center,
+                    )
+                }
             }
         }
     }
@@ -119,7 +185,7 @@ class DashboardActivity : ComponentActivity() {
 
 
         LazyRow(modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(top = 10.dp),
         ){
             items(items = items){item->
