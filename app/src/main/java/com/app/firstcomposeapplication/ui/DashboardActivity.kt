@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Toolbar
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -112,6 +113,74 @@ class DashboardActivity : ComponentActivity() {
 
                 LearnPlantRecyView()
 
+                Text(
+                    text = "Popular plants",
+                    color = Color.White,
+                    fontSize = 16.sp,
+                    fontFamily = FontFamily.SansSerif,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.padding(top = 20.dp)
+                )
+
+                PopularPlantRecyView()
+            }
+        }
+    }
+
+    @Composable
+    fun PopularPlantRecyView(){
+        val items = mutableListOf<Drawable>()
+        items.add(resources.getDrawable(R.drawable.popular_one))
+        items.add(resources.getDrawable(R.drawable.popular_two))
+        items.add(resources.getDrawable(R.drawable.item_img3))
+        items.add(resources.getDrawable(R.drawable.item_img3))
+        items.add(resources.getDrawable(R.drawable.item_img3))
+        items.add(resources.getDrawable(R.drawable.item_img3))
+
+        LazyRow(modifier = Modifier.padding(top = 10.dp)){
+            items(items){
+                PopularPlanItem(it)
+            }
+        }
+    }
+
+    @OptIn(ExperimentalGlideComposeApi::class)
+    @Composable
+    fun PopularPlanItem(item:Drawable){
+        Card(shape = RoundedCornerShape(8.dp), backgroundColor = Color.Gray,
+            modifier = Modifier
+                .width(170.dp)
+                .height(180.dp)
+                .padding(end = 10.dp)) {
+            Column(modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight().padding(5.dp),
+            ) {
+                GlideImage(model = item,
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(80.dp)
+                )
+
+                    Text(
+                        text = "Yarrow",
+                        color = Color.White,
+                        fontSize = 18.sp,
+                        fontFamily = FontFamily.SansSerif,
+                        fontWeight = FontWeight.SemiBold,
+                        textAlign = TextAlign.Center,
+                    )
+
+                Text(
+                    text = "Summer plant less water required for growth",
+                    color = Color.White,
+                    fontSize = 14.sp,
+                    fontFamily = FontFamily.SansSerif,
+                    fontWeight = FontWeight.W400,
+                )
+
             }
         }
     }
@@ -119,11 +188,14 @@ class DashboardActivity : ComponentActivity() {
     @Composable
     fun LearnPlantRecyView(){
         val items = mutableListOf<Drawable>()
-        items.add(resources.getDrawable(R.drawable.item_img))
-        items.add(resources.getDrawable(R.drawable.item_image2))
+        items.add(resources.getDrawable(R.drawable.lear_one))
+        items.add(resources.getDrawable(R.drawable.learn_two))
+        items.add(resources.getDrawable(R.drawable.learn_three))
+        items.add(resources.getDrawable(R.drawable.item_img3))
+        items.add(resources.getDrawable(R.drawable.item_img3))
         items.add(resources.getDrawable(R.drawable.item_img3))
 
-        LazyRow(modifier = Modifier.padding(top = 20.dp)){
+        LazyRow(modifier = Modifier.padding(top = 10.dp)){
             items(items){
                 LearnListItem(it)
             }
