@@ -97,7 +97,7 @@ class OtpActivity : ComponentActivity() {
                 )
 
                 Button(onClick = {
-                     // startActivity(Intent(this@OtpActivity,SignUpActivity::class.java))
+                    startActivity(Intent(this@OtpActivity,DashboardActivity::class.java))
                 },
                     modifier = Modifier
                         .padding(top = 30.dp)

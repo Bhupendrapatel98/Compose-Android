@@ -64,4 +64,6 @@ dependencies {
 
     implementation 'com.github.magneto3572:Magotp:1.0.5'
 
+    implementation "com.github.bumptech.glide:compose:1.0.0-alpha.1"
+
 }
