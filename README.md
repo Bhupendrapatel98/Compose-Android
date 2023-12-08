@@ -1,13 +1,12 @@
 
 # Planteria-Compose-Android
 
-The app is a learning project designed to explore and understand the fundamentals of Android Jetpack Compose. It features a user interface crafted using Compose's declarative UI toolkit. Throughout the development process, the developer gained valuable insights into the usage of essential Compose components. These components include Text for displaying text content, Image for rendering images, and Card for creating visually appealing cards.
+The app is a learning project designed to explore and understand the fundamentals of Android Jetpack Compose. It features a user interface crafted using Compose's declarative UI toolkit. Throughout the development process,I gained valuable insights into the usage of essential Compose components. These components include Text for displaying text content, Image for rendering images, and Card for creating visually appealing cards.
 
 Furthermore, the app utilizes layout components such as Box to organize UI elements, Row and Column for arranging items horizontally and vertically, and LazyRow and LazyColumn for efficient handling of large lists or grids. The navigation structure is enhanced with the implementation of a BottomNavigation bar, allowing users to seamlessly switch between different screens.
 
-Overall, the project serves as a practical exercise in leveraging Compose's powerful features, offering hands-on experience in building a variety of UI elements and structuring a cohesive user interface for Android applications.
 ## Screenshots
-
+<img src="https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/5509cace-02f4-44fa-a7ac-2cca1acdd6d3" alt="Image 1" width="100">
 
 ![1702030381044](https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/5509cace-02f4-44fa-a7ac-2cca1acdd6d3)
 ![1702030380877](https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/efea4b3b-82bf-448a-9511-bcbcdbe1e847)
