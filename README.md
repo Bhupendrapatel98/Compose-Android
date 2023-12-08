@@ -7,10 +7,8 @@ Furthermore, the app utilizes layout components such as Box to organize UI eleme
 
 ## Screenshots
 <img src="https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/5509cace-02f4-44fa-a7ac-2cca1acdd6d3" alt="Image 1" width="100">
-
-![1702030381044](https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/5509cace-02f4-44fa-a7ac-2cca1acdd6d3)
-![1702030380877](https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/efea4b3b-82bf-448a-9511-bcbcdbe1e847)
-![1702030380980](https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/397a7a22-e993-4876-9149-379381c89c35)
-![1702030380717](https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/82da9f8b-28da-4d42-b7aa-25d619cb1e63)
-![1702030381154](https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/7de03a8d-435b-48ae-b033-8477ae5eea88)
-![1702030380652](https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/c170a62c-497d-4f17-abe4-5be86fd3f1d6)
+<img src="https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/efea4b3b-82bf-448a-9511-bcbcdbe1e847" alt="Image 1" width="100">
+<img src="https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/397a7a22-e993-4876-9149-379381c89c35" alt="Image 1" width="100">
+<img src="https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/82da9f8b-28da-4d42-b7aa-25d619cb1e63" alt="Image 1" width="100">
+<img src="https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/7de03a8d-435b-48ae-b033-8477ae5eea88" alt="Image 1" width="100">
+<img src="https://github.com/Bhupendrapatel98/Planteria-Compose-Android/assets/55411086/c170a62c-497d-4f17-abe4-5be86fd3f1d6" alt="Image 1" width="100">
