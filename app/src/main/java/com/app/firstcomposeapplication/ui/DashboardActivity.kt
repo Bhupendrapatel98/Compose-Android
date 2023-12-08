@@ -1,23 +1,25 @@
 package com.app.firstcomposeapplication.ui
 
-import android.app.LauncherActivity
-import android.app.LauncherActivity.ListItem
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.widget.Toolbar
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.annotation.DrawableRes
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,8 +32,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.firstcomposeapplication.R
-import com.app.firstcomposeapplication.ui.ui.theme.FirstComposeApplicationTheme
-import com.bumptech.glide.Glide
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 
@@ -39,7 +39,50 @@ class DashboardActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            InitView()
+            //InitView()
+            BottomNavigationExm()
+        }
+    }
+
+    @Composable
+    fun BottomNavigationExm(){
+        var selectedItem by remember { mutableStateOf(0) }
+
+        Scaffold(
+            bottomBar = {
+                BottomNavigation(modifier = Modifier.background(MaterialTheme.colors.primary),
+                backgroundColor = Color.White){
+                    BottomNavigationItem(
+                        icon = { Icon(Icons.Default.Home , contentDescription = "Home")},
+                        label = { Text("Home") },
+                        selected = selectedItem == 0,
+                        onClick = { selectedItem = 0  })
+
+                    BottomNavigationItem(
+                        icon = { Icon(Icons.Default.Search , contentDescription = "Search")},
+                        label = { Text("Search") },
+                        selected = selectedItem == 1,
+                        onClick = { selectedItem = 1  })
+
+                    BottomNavigationItem(
+                        icon = { Icon(Icons.Default.Menu , contentDescription = "Settings")},
+                        label = { Text("Settings") },
+                        selected = selectedItem == 2,
+                        onClick = { selectedItem = 2  })
+                }
+            }){innerPadding ->
+            Box(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .fillMaxSize()
+            ) {
+                // Content of each screen goes here
+                when (selectedItem) {
+                    0 -> HomeScreen(this@DashboardActivity)
+                    1 -> KnowAboutPlantScreen(this@DashboardActivity)
+                    2 -> Toast.makeText(this@DashboardActivity, "Position2", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -154,7 +197,8 @@ class DashboardActivity : ComponentActivity() {
                 .padding(end = 10.dp)) {
             Column(modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight().padding(5.dp),
+                .fillMaxHeight()
+                .padding(5.dp),
             ) {
                 GlideImage(model = item,
                     contentDescription = null,
