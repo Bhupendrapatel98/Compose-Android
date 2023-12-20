@@ -1,10 +1,5 @@
 package com.app.firstcomposeapplication.ui
 
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,24 +12,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.app.firstcomposeapplication.R
 
-class SignUpActivity : ComponentActivity() {
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-    @OptIn(ExperimentalMaterial3Api::class)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-           InitView()
-        }
-    }
-
-    @Preview
     @Composable
-    fun InitView() {
+    fun SignUpScreen(navController: NavController) {
         Box(
             Modifier
                 .fillMaxHeight()
@@ -145,7 +129,7 @@ class SignUpActivity : ComponentActivity() {
                 )
 
                 Button(onClick = {
-                                 startActivity(Intent(this@SignUpActivity,OtpActivity::class.java))
+                       navController.navigate("home")
                 },
                     modifier = Modifier
                         .padding(top = 30.dp)
@@ -195,4 +179,3 @@ class SignUpActivity : ComponentActivity() {
             }
         }
     }
-}

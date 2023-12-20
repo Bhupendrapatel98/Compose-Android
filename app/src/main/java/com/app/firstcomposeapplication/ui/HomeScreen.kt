@@ -3,6 +3,7 @@ package com.app.firstcomposeapplication.ui
 import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -17,20 +18,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.app.firstcomposeapplication.R
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 
 @Composable
-fun HomeScreen(context: Context){
-    InitView(context)
+fun HomeScreen(context: Context,navController: NavController){
+
+    InitView(context,navController)
 }
 
 @Composable
-fun InitView(context: Context) {
+fun InitView(context: Context,navController: NavController) {
 
     Box(modifier = Modifier
         .fillMaxWidth()
@@ -84,7 +86,9 @@ fun InitView(context: Context) {
                 fontSize = 16.sp,
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.padding(top = 30.dp)
+                modifier = Modifier.padding(top = 30.dp).clickable {
+                    navController.navigate("detail")
+                }
             )
 
             PlantRecyclerView(context)

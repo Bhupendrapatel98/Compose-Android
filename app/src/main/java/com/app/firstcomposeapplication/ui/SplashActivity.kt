@@ -1,32 +1,31 @@
 package com.app.firstcomposeapplication.ui
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.app.firstcomposeapplication.R
 import kotlinx.coroutines.delay
 
-class SplashActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            Init()
-            LaunchedEffect(Unit){
-                delay(3000)
-                startActivity(Intent(this@SplashActivity, SignInActivity::class.java))
-            }
+    @Composable
+    fun SplashScreen(navController: NavController){
+        var navigateToHome  by remember { mutableStateOf(false) }
+        Init()
+        LaunchedEffect(Unit){
+            delay(3000)
+            navigateToHome = true
+        }
+
+        if (navigateToHome) {
+            navController.navigate("signin")
         }
     }
 
@@ -44,4 +43,3 @@ class SplashActivity : ComponentActivity() {
             modifier = Modifier.size(130.dp))
         }
     }
-}

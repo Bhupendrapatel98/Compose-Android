@@ -1,8 +1,10 @@
 package com.app.firstcomposeapplication.ui
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -35,17 +37,14 @@ import com.app.firstcomposeapplication.R
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 
-class DashboardActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            //InitView()
-            BottomNavigationExm()
-        }
+    @Composable
+    fun DashboardScreen(context: Context){
+        //InitView()
+        BottomNavigationExm(context)
     }
 
     @Composable
-    fun BottomNavigationExm(){
+    fun BottomNavigationExm(context: Context){
         var selectedItem by remember { mutableStateOf(0) }
 
         Scaffold(
@@ -78,17 +77,16 @@ class DashboardActivity : ComponentActivity() {
             ) {
                 // Content of each screen goes here
                 when (selectedItem) {
-                    0 -> HomeScreen(this@DashboardActivity)
-                    1 -> KnowAboutPlantScreen(this@DashboardActivity)
-                    2 -> Toast.makeText(this@DashboardActivity, "Position2", Toast.LENGTH_SHORT).show()
+                    0 -> InitView(context = context)
+                    1 -> KnowAboutPlantScreen(context)
+                    2 -> Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
                 }
             }
         }
     }
 
-    @Preview
     @Composable
-    fun InitView() {
+    fun InitView(context: Context) {
 
         Box(modifier = Modifier
             .fillMaxWidth()
@@ -143,7 +141,7 @@ class DashboardActivity : ComponentActivity() {
                     modifier = Modifier.padding(top = 30.dp)
                 )
 
-                PlantRecyclerView()
+                PlantRecyclerView1(context)
 
                 Text(
                     text = "Learn about plants",
@@ -154,7 +152,7 @@ class DashboardActivity : ComponentActivity() {
                     modifier = Modifier.padding(top = 20.dp)
                 )
 
-                LearnPlantRecyView()
+                LearnPlantRecyView1(context)
 
                 Text(
                     text = "Popular plants",
@@ -165,31 +163,31 @@ class DashboardActivity : ComponentActivity() {
                     modifier = Modifier.padding(top = 20.dp)
                 )
 
-                PopularPlantRecyView()
+                PopularPlantRecyView1(context)
             }
         }
     }
 
     @Composable
-    fun PopularPlantRecyView(){
+    fun PopularPlantRecyView1(context: Context){
         val items = mutableListOf<Drawable>()
-        items.add(resources.getDrawable(R.drawable.popular_one))
-        items.add(resources.getDrawable(R.drawable.popular_two))
-        items.add(resources.getDrawable(R.drawable.item_img3))
-        items.add(resources.getDrawable(R.drawable.item_img3))
-        items.add(resources.getDrawable(R.drawable.item_img3))
-        items.add(resources.getDrawable(R.drawable.item_img3))
+        items.add(context.resources.getDrawable(R.drawable.popular_one))
+        items.add(context.resources.getDrawable(R.drawable.popular_two))
+        items.add(context.resources.getDrawable(R.drawable.item_img3))
+        items.add(context.resources.getDrawable(R.drawable.item_img3))
+        items.add(context.resources.getDrawable(R.drawable.item_img3))
+        items.add(context.resources.getDrawable(R.drawable.item_img3))
 
         LazyRow(modifier = Modifier.padding(top = 10.dp)){
             items(items){
-                PopularPlanItem(it)
+                PopularPlanItem1(it)
             }
         }
     }
 
     @OptIn(ExperimentalGlideComposeApi::class)
     @Composable
-    fun PopularPlanItem(item:Drawable){
+    fun PopularPlanItem1(item:Drawable){
         Card(shape = RoundedCornerShape(8.dp), backgroundColor = Color.Gray,
             modifier = Modifier
                 .width(170.dp)
@@ -230,25 +228,25 @@ class DashboardActivity : ComponentActivity() {
     }
 
     @Composable
-    fun LearnPlantRecyView(){
+    fun LearnPlantRecyView1(context: Context){
         val items = mutableListOf<Drawable>()
-        items.add(resources.getDrawable(R.drawable.lear_one))
-        items.add(resources.getDrawable(R.drawable.learn_two))
-        items.add(resources.getDrawable(R.drawable.learn_three))
-        items.add(resources.getDrawable(R.drawable.item_img3))
-        items.add(resources.getDrawable(R.drawable.item_img3))
-        items.add(resources.getDrawable(R.drawable.item_img3))
+        items.add(context.resources.getDrawable(R.drawable.lear_one))
+        items.add(context.resources.getDrawable(R.drawable.learn_two))
+        items.add(context.resources.getDrawable(R.drawable.learn_three))
+        items.add(context.resources.getDrawable(R.drawable.item_img3))
+        items.add(context.resources.getDrawable(R.drawable.item_img3))
+        items.add(context.resources.getDrawable(R.drawable.item_img3))
 
         LazyRow(modifier = Modifier.padding(top = 10.dp)){
             items(items){
-                LearnListItem(it)
+                LearnListItem1(it)
             }
         }
     }
 
     @OptIn(ExperimentalGlideComposeApi::class)
     @Composable
-    fun LearnListItem(item : Drawable){
+    fun LearnListItem1(item : Drawable){
         Card(shape = RoundedCornerShape(8.dp), backgroundColor = Color.Gray,
         modifier = Modifier
             .width(170.dp)
@@ -285,19 +283,18 @@ class DashboardActivity : ComponentActivity() {
         }
     }
 
-    @OptIn(ExperimentalMaterialApi::class)
     @Composable
-    fun PlantRecyclerView(){
+    fun PlantRecyclerView1(context: Context){
         val items = mutableListOf<Drawable>()
-        items.add(resources.getDrawable(R.drawable.item_img))
-        items.add(resources.getDrawable(R.drawable.item_image2))
-        items.add(resources.getDrawable(R.drawable.item_img3))
-        items.add(resources.getDrawable(R.drawable.item_img))
-        items.add(resources.getDrawable(R.drawable.item_image2))
-        items.add(resources.getDrawable(R.drawable.item_img3))
-        items.add(resources.getDrawable(R.drawable.item_img))
-        items.add(resources.getDrawable(R.drawable.item_image2))
-        items.add(resources.getDrawable(R.drawable.item_img3))
+        items.add(context.resources.getDrawable(R.drawable.item_img))
+        items.add(context.resources.getDrawable(R.drawable.item_image2))
+        items.add(context.resources.getDrawable(R.drawable.item_img3))
+        items.add(context.resources.getDrawable(R.drawable.item_img))
+        items.add(context.resources.getDrawable(R.drawable.item_image2))
+        items.add(context.resources.getDrawable(R.drawable.item_img3))
+        items.add(context.resources.getDrawable(R.drawable.item_img))
+        items.add(context.resources.getDrawable(R.drawable.item_image2))
+        items.add(context.resources.getDrawable(R.drawable.item_img3))
 
 
         LazyRow(modifier = Modifier
@@ -305,14 +302,14 @@ class DashboardActivity : ComponentActivity() {
             .padding(top = 10.dp),
         ){
             items(items = items){item->
-                ListItemCard(item)
+                ListItemCard1(item)
             }
         }
     }
 
     @OptIn(ExperimentalGlideComposeApi::class)
     @Composable
-    fun ListItemCard(item: Drawable){
+    fun ListItemCard1(item: Drawable){
         Card( modifier = Modifier
             .height(110.dp)
             .width(120.dp)
@@ -326,4 +323,3 @@ class DashboardActivity : ComponentActivity() {
             modifier =Modifier.fillMaxSize())
         }
     }
-}

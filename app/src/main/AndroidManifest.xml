@@ -11,15 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirstComposeApplication"
         tools:targetApi="31">
+
         <activity
-            android:name=".ui.DashboardActivity"
-            android:exported="false"
-            android:label="@string/title_activity_dashboard"
-            android:theme="@style/Theme.FirstComposeApplication" />
-        <activity
-            android:name=".ui.SplashActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
-            android:label="@string/title_activity_splash"
+            android:label="@string/app_name"
             android:theme="@style/Theme.FirstComposeApplication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,26 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.OtpActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login"
-            android:theme="@style/Theme.FirstComposeApplication" />
-        <activity
-            android:name=".ui.SignInActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login"
-            android:theme="@style/Theme.FirstComposeApplication" />
-        <activity
-            android:name=".ui.SignUpActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login"
-            android:theme="@style/Theme.FirstComposeApplication" />
-        <activity
-            android:name=".ui.MainActivity"
-            android:exported="false"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.FirstComposeApplication"></activity>
     </application>
 
 </manifest>

@@ -1,10 +1,5 @@
 package com.app.firstcomposeapplication.ui
 
-import android.annotation.SuppressLint
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,24 +12,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.app.firstcomposeapplication.R
 
-class SignInActivity : ComponentActivity() {
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-    @OptIn(ExperimentalMaterial3Api::class)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-           InitView()
-        }
-    }
-
-    @Preview
     @Composable
-    fun InitView() {
+    fun SignInScreen(navController: NavController) {
         Box(
             Modifier
                 .fillMaxHeight()
@@ -45,12 +29,12 @@ class SignInActivity : ComponentActivity() {
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight())
-            
+
             Column(modifier = Modifier
                 .fillMaxHeight()
                 .fillMaxWidth()
                 .padding(horizontal = 15.dp)) {
-                
+
                 Text(
                     text = "Sign In",
                     color = Color.White,
@@ -115,17 +99,17 @@ class SignInActivity : ComponentActivity() {
                         )
                     }
                 )
-              
-                Button(onClick = {
-                                 startActivity(Intent(this@SignInActivity,SignUpActivity::class.java))
-                },
+
+                Button(
                     modifier = Modifier
                         .padding(top = 30.dp)
                         .fillMaxWidth()
                         .height(50.dp),
                   colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Green
-                ),
+                ),onClick = {
+                        navController.navigate("otp")
+                    },
                     shape = RoundedCornerShape(8.dp)
                 ) {
                     Text(text = "sign In", color = Color.Black, fontSize = 18.sp)
@@ -142,7 +126,7 @@ class SignInActivity : ComponentActivity() {
                         .padding(horizontal = 10.dp), color = Color.White)
                     Divider(color = Color.White, thickness = 1.dp, modifier = Modifier.weight(1f))
                 }
-                
+
                 Text(
                     text = "Sign up with",
                     Modifier
@@ -153,18 +137,27 @@ class SignInActivity : ComponentActivity() {
                     fontFamily = FontFamily.SansSerif,
                     fontWeight = FontWeight.SemiBold
                 )
-                
-                Row(modifier = Modifier.fillMaxWidth().padding(top = 30.dp)) {
-                    Image(painter = painterResource(id = R.drawable.google_icon), contentDescription ="", modifier = Modifier.weight(1f).size(30.dp))
-                    Image(painter = painterResource(id = R.drawable.fb_icon), contentDescription ="",modifier = Modifier.weight(1f).size(30.dp) )
-                    Image(painter = painterResource(id = R.drawable.insta_logo), contentDescription ="",modifier = Modifier.weight(1f).size(30.dp) )
+
+                Row(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 30.dp)) {
+                    Image(painter = painterResource(id = R.drawable.google_icon), contentDescription ="", modifier = Modifier
+                        .weight(1f)
+                        .size(30.dp))
+                    Image(painter = painterResource(id = R.drawable.fb_icon), contentDescription ="",modifier = Modifier
+                        .weight(1f)
+                        .size(30.dp) )
+                    Image(painter = painterResource(id = R.drawable.insta_logo), contentDescription ="",modifier = Modifier
+                        .weight(1f)
+                        .size(30.dp) )
                 }
-                
-                Row(modifier = Modifier.padding(top = 30.dp).align(alignment = Alignment.CenterHorizontally)) {
+
+                Row(modifier = Modifier
+                    .padding(top = 30.dp)
+                    .align(alignment = Alignment.CenterHorizontally)) {
                     Text(text = "Already have an account ? ", color = Color.White, fontSize = 16.sp)
                     Text(text = "Sign in", color = Color.Green, fontSize = 16.sp)
                 }
             }
         }
     }
-}
