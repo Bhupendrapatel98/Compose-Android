@@ -3,13 +3,19 @@ package com.app.firstcomposeapplication.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.runtime.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.app.firstcomposeapplication.ui.signIn.SignInViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    val signInViewModel:SignInViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -25,7 +31,7 @@ class MainActivity : ComponentActivity() {
                 SplashScreen(navController = navController)
             }
             composable("signin"){
-                SignInScreen(navController = navController)
+                SignInScreen(navController = navController,signInViewModel,this@MainActivity)
             }
             composable("otp"){
                 OtpScreen(navController = navController)
