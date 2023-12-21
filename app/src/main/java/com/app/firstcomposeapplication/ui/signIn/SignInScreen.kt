@@ -6,8 +6,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,14 +22,14 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import com.app.firstcomposeapplication.R
 import com.app.firstcomposeapplication.ui.signIn.SignInViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 @Composable
 fun SignInScreen(navController: NavController,signInViewModel: SignInViewModel,context: Context) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var emailError by remember { mutableStateOf(false) }
+    var passwordError by remember { mutableStateOf(false) }
+
     Box(
         Modifier
             .fillMaxHeight()
@@ -69,8 +70,11 @@ fun SignInScreen(navController: NavController,signInViewModel: SignInViewModel,c
             )
 
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = email,
+                onValueChange = {
+                     email = it
+                    emailError = false
+                },
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier
                     .padding(top = 10.dp)
@@ -84,7 +88,11 @@ fun SignInScreen(navController: NavController,signInViewModel: SignInViewModel,c
                             .height(50.dp)
                             .wrapContentHeight(Alignment.CenterVertically)
                     )
-                }
+                },
+                isError = emailError,
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    textColor = Color.White
+                )
             )
 
             Text(
@@ -96,14 +104,19 @@ fun SignInScreen(navController: NavController,signInViewModel: SignInViewModel,c
                 modifier = Modifier.padding(top = 20.dp)
             )
 
+
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = password,
+                onValueChange = {
+                    password = it
+                    passwordError = false
+                },
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier
                     .padding(top = 10.dp)
                     .height(50.dp)
                     .fillMaxWidth(),
+                isError = passwordError,
                 placeholder = {
                     Text(
                         text = "Enter Password",
@@ -112,7 +125,10 @@ fun SignInScreen(navController: NavController,signInViewModel: SignInViewModel,c
                             .height(50.dp)
                             .wrapContentHeight(Alignment.CenterVertically)
                     )
-                }
+                },
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    textColor = Color.White
+                )
             )
 
             Button(
@@ -124,7 +140,13 @@ fun SignInScreen(navController: NavController,signInViewModel: SignInViewModel,c
                     containerColor = Color.Green
                 ), onClick = {
                     // navController.navigate("otp")
-                    signInViewModel.callSignInApi()
+                    if (email.isEmpty()){
+                        emailError = true
+                    }else if (password.isEmpty()){
+                        passwordError = true
+                    }else{
+                        signInViewModel.callSignInApi()
+                    }
                 },
                 shape = RoundedCornerShape(8.dp)
             ) {
@@ -196,11 +218,11 @@ fun SignInScreen(navController: NavController,signInViewModel: SignInViewModel,c
         }
     }
 
-    callApi(signInViewModel,context)
+    callApi(signInViewModel)
 }
 
 @Composable
-fun callApi(signInViewModel: SignInViewModel,context: Context) {
+fun callApi(signInViewModel: SignInViewModel) {
     val liveDataState = signInViewModel.liveData.observeAsState()
     val data = liveDataState.value
 
